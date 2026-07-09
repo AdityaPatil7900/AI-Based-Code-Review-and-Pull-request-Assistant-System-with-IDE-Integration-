@@ -1,0 +1,17 @@
+
+fastapi
+uvicorn
+python-dotenv
+pydantic
+
+
+groq
+
+
+pylint
+bandit
+radon
+
+
+python-multipart
+
