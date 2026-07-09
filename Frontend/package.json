@@ -1,0 +1,109 @@
+{
+  "name": "ai-reviewer-extension",
+  "displayName": "AI Code Reviewer for Python",
+  "description": "AI-powered Python code reviewer using Groq LLaMA-3 — finds bugs, security issues and fixes them instantly.",
+  "version": "1.0.3",
+  "publisher": "ai-code-reviewer",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Harshal4257/AI_Code_Reviewer"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "ai",
+    "code review",
+    "python",
+    "groq",
+    "llama",
+    "security",
+    "bug finder",
+    "github",
+    "pull request"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-reviewer-extension.reviewCode",
+        "title": "AI: Review Code",
+        "icon": "$(play)"
+      },
+      {
+        "command": "ai-reviewer-extension.applyAllFixes",
+        "title": "AI: Apply All Fixes",
+        "icon": "$(wand)"
+      },
+      {
+        "command": "ai-reviewer-extension.pushToGitHub",
+        "title": "AI: Push Fixed Files to GitHub (PR Simulation)",
+        "icon": "$(git-pull-request)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "ai-reviewer-extension.reviewCode",
+          "group": "navigation",
+          "when": "resourceExtname == .py || resourceExtname == .js || resourceExtname == .ts"
+        },
+        {
+          "command": "ai-reviewer-extension.applyAllFixes",
+          "group": "navigation",
+          "when": "resourceExtname == .py || resourceExtname == .js || resourceExtname == .ts"
+        },
+        {
+          "command": "ai-reviewer-extension.pushToGitHub",
+          "group": "navigation",
+          "when": "resourceExtname == .py || resourceExtname == .js || resourceExtname == .ts"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Code Reviewer",
+      "properties": {
+        "aiReviewer.backendUrl": {
+          "type": "string",
+          "default": "https://ai-code-reviewer-f1mo.onrender.com",
+          "description": "Backend API URL for AI Code Reviewer"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "axios": "^1.13.5"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
+    "@typescript-eslint/parser": "^8.1.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "esbuild": "^0.23.0",
+    "eslint": "^9.9.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.5.4"
+  }
+}
