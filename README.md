@@ -167,7 +167,7 @@ Research Interests:
 
 GitHub: https://github.com/AdityaPatil7900
 
-LinkedIn: https://linkedin.com/in/aditya-patil
+LinkedIn: https://www.linkedin.com/in/aditya-patil-aj7900/
 
 ---
 
